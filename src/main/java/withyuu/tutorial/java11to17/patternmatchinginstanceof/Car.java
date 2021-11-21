@@ -1,4 +1,4 @@
-package withyuu.tutorial.java11to17;
+package withyuu.tutorial.java11to17.patternmatchinginstanceof;
 
 public class Car implements Vehicle {
 

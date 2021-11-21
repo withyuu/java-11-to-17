@@ -1,6 +1,8 @@
-package withyuu.tutorial.java11to17;
+package withyuu.tutorial.java11to17.patternmatchinginstanceof;
 
 import org.junit.jupiter.api.Test;
+import withyuu.tutorial.java11to17.patternmatchinginstanceof.Car;
+import withyuu.tutorial.java11to17.patternmatchinginstanceof.Vehicle;
 
 public class PatternMatchingForInstanceOfTest {
 
