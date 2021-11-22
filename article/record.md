@@ -88,6 +88,7 @@ private List<String> findGradeAStudent() {
       .map(StudentScore::name)
       .collect(Collectors.toList());
   }
+}
 ```
 
 ## การ Customize Record Class
@@ -156,7 +157,7 @@ public record TestSubject(int p1, int p2, int p3, int p4) {
 
   ...
   @OnField private final int p3
-  ...
+  @OnFieldAndParameter private final int p4
 
   public TestSubject(
         @OnParameter int p1,
