@@ -1,12 +1,12 @@
 # Feature ใหม่ใน Java 17: #2 Records
 
-Record เป็น class ประเภทใหม่ที่แน่ใจว่าหลายๆ คนรอคอยให้ Java มีแบบนี้สักที[^1]
+Record คือ class ประเภทใหม่ที่หลายคนรอคอยให้ Java มีแบบนี้สักที[^1]
 
 syntax การประกาศ Record ก็เหมือน class ทั่วไปเพียงแต่เปลี่ยนคำว่า `class` เป็น `record` แทน และต่อท้ายในวงเล็บด้วย component สำหรับ Record นั้น
 ```
 public record Rectangle(int width, int height) { }
 ```
-แค่เห็นก็ว้าวแล้วใช่มั้ยครับ<br>
+แค่เห็นก็ว้าวแล้วใช่มั้ย<br>
 เย่! ในที่สุด Java ก็มี data class เหมือน Kotlin แล้ว!! - **ผิด**<br>
 เย่! ในที่สุดก็ไม่ต้องใช้ Lombok แล้ว!! - **ผิด**
 
@@ -62,12 +62,12 @@ public record Rectangle(int width, int height) {
 ```
 สิ่งที่ Record ทำให้เราโดยอัตโนมัติเลย ได้แก่
 - private final field ซึ่งชื่อและ type เป็นตามที่เราระบุไว้ใน Record header
-- Record Class จะไม่มี default constructor แต่จะสร้าง constructor ที่รับ parameter ตามที่เราระบุไว้ใน Record Header
+- Record class จะไม่มี default constructor แต่จะสร้าง constructor ที่รับ parameter ตามที่เราระบุไว้ใน Record Header
 และทำการ assign ค่าให้กับ field ในข้อแรก
 - getter method **ที่ชื่อไม่ได้ขึ้นต้นด้วย** `get` **!!**
 - method equals(), hashCode(), และ toString()
 
-ถือว่า Record ช่วยให้เราประหยัดเวลาไปได้พอสมควรทีเดียวสำหรับการสร้าง immutable data class
+ถือว่า Record ช่วยเราประหยัดเวลาสร้าง immutable data class ไปได้เยอะ
 
 ## Local Record Class
 บ่อยครั้งที่เราทำงานกับ stream แล้วอยากให้ `map()` return ค่าออกมามากกว่า 1 ตัว ซึ่งถ้าเป็นในอดีตเราก็จะมอบหน้าที่นี้ให้กับ Tuple class
@@ -91,7 +91,7 @@ private List<String> findGradeAStudent() {
 }
 ```
 
-## การ Customize Record Class
+## การ customize Record class
 ถ้าเราต้องการเพิ่ม logic หรือแก้ไข default behavior ที่ Record class มีให้ เราก็สามารถทำได้เช่นเดียวกับ class ปกติทั่วไป
 
 ### Constructor
@@ -133,7 +133,7 @@ record DoubleSizeRectangle(int width, int height) {
 หรือถ้าจะสร้าง instance method / class (static) method อื่นๆ ขึ้นมาก็ได้เหมือนกัน
 
 ### Implement Interface
-ถึงแม้ว่า Record จะไม่สามารถ extend class อื่นได้ (ดูคำอธิบายด้านล่าง) แต่สามารถ implement interface ได้ตามปกติ เช่น เราอาาจจะอยากให้
+ถึงแม้ว่า Record จะไม่สามารถ extend class อื่นได้ (ดูคำอธิบายด้านล่าง) แต่สามารถ implement interface ได้ตามปกติ เช่น เราอาจจะอยากให้
 Record ของเรา implement Comparable interface ได้เป็นต้น
 
 ### Annotation
@@ -179,11 +179,11 @@ public record TestSubject(int p1, int p2, int p3, int p4) {
 }
 ```
 
-## สิ่งที่ Record Class ทำไม่ได้
+## สิ่งที่ Record class ทำไม่ได้
 ด้วยความที่ Record ถูกออกแบบมาให้ immutable และ state ของ Record instance ขึ้นอยู่กับ component ใน Record header เท่านั้น เพราะฉะนั้นอะไรก็ตามที่ขัดกับความตั้งใจนี้จะไม่สามารถทำได้
-- Record Class ไม่สามารถ extend class อื่นได้
-- Record Class ถือเป็น final class และห้ามเป็น abstract
-- ไม่สามารถมี instance field อื่นๆ ใน Record Class ได้เพราะจะทำให้ state ของ instance ไม่ขึ้นอยู่กับ Record component เพียงอย่างเดียว
+- Record class ไม่สามารถ extend class อื่นได้
+- Record class ถือเป็น final class และห้ามเป็น abstract
+- ไม่สามารถมี instance field อื่นๆ ใน Record class ได้เพราะจะทำให้ state ของ instance ไม่ขึ้นอยู่กับ Record component เพียงอย่างเดียว
 - ไม่สามารถมี native method ได้
 
 ## สรุป
