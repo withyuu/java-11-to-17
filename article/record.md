@@ -1,5 +1,5 @@
 # Feature ใหม่ใน Java 17: #2 Records
-
+![A record with Duke, the Java mascot, on the cover](image/java-record.png)
 Record คือ class ประเภทใหม่ที่หลายคนรอคอยให้ Java มีแบบนี้สักที[^1]
 
 syntax การประกาศ Record ก็เหมือน class ทั่วไปเพียงแต่เปลี่ยนคำว่า `class` เป็น `record` แทน และต่อท้ายในวงเล็บด้วย component สำหรับ Record นั้น
