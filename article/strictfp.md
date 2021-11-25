@@ -65,10 +65,10 @@ public static strictfp double toRadians(double angdeg) {
 
 วิธีการใช้ strictfp สามารถดูได้จาก [ที่นี่](https://www.baeldung.com/java-strictfp)
 
-## Java 17: เอา keyword strictfp ออก
+## Java 17: Always-Strict Floating-Point Semantics
 เมื่อเวลาผ่านไป CPU ตั้งแต่ Pentium 4 เป็นต้นมามี SSE2 extension ซึ่งช่วยให้การคำนวณ floating point แบบ strict เร็วขึ้นมาก ซึ่งทั้ง
-Intel และ AMD ก็ support SSE2 มาระยะเวลาหนึ่งแล้ว เป็นเหตุผลให้ Java บังคับใช้ strict mode กับทุกๆ การคำนวณ floating point ไปเลย
-ไม่จำเป็นต้องใช้ keyword `strictfp` อีกต่อไป
+Intel และ AMD ก็ support SSE2 มาระยะเวลาหนึ่งแล้ว เป็นเหตุผลให้ Java กลับมาบังคับใช้ strict mode กับทุกๆ การคำนวณ floating point ไปเลยเหมือนสมัยก่อน Java 1.2
+และเราก็ไม่จำเป็นต้องใช้ keyword `strictfp` อีกต่อไป
 
 Code snippet ของ [class StrictMath ใน Java 17](https://github.com/openjdk/jdk17/blob/74007890bb9a3fa3a65683a3f480e399f2b1a0b6/src/java.base/share/classes/java/lang/StrictMath.java#L89)
 ```
