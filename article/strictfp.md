@@ -1,5 +1,7 @@
 # Feature ใหม่ใน Java 17: #3 Restore Always-Strict Floating-Point Semantics
 
+![Calculator](image/strictfp.jpg)
+
 ก่อนจะเข้าเนื้อหาใดๆ ขอสารภาพก่อนว่าทำงานมาเกินสิบปีผมเพิ่งรู้จัก keyword `strictfp` วันนี้นี่แหละครับ 555
 
 สำหรับตัว Feature **Restore Always-Strict Floating-Point Semantics** นี่คิดว่าคงน้อยคนมากที่จะได้ใช้ เอาเป็นว่าบทความนี้เรามาเรียนรู้ประวัติศาสตร์ของ `strictfp` กันดีกว่า
