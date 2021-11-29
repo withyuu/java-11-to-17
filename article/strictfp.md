@@ -4,13 +4,13 @@
 
 ก่อนจะเข้าเนื้อหาใดๆ ขอสารภาพก่อนว่าทำงานมาเกินสิบปีผมเพิ่งรู้จัก keyword `strictfp` วันนี้นี่แหละครับ 555
 
-สำหรับตัว Feature **Restore Always-Strict Floating-Point Semantics** นี่คิดว่าคงน้อยคนมากที่จะได้ใช้ เอาเป็นว่าบทความนี้เรามาเรียนรู้ประวัติศาสตร์ของ `strictfp` กันดีกว่า
+สำหรับตัว feature **Restore Always-Strict Floating-Point Semantics** นี่คิดว่าคงน้อยคนมากที่จะได้ใช้ เอาเป็นว่าบทความนี้เรามาเรียนรู้ประวัติศาสตร์ของ `strictfp` กันดีกว่า
 
 ## ปัญหาของ Floating Point
 เป็นที่รู้กันดีว่าคอมพิวเตอร์ซึ่งมีหน่วยความจำจำกัดไม่สามารถแสดงค่าจำนวนจริงทั้งหมดได้ การเก็บทศนิยมในภาษาต่างๆ 
 จึงใช้การประมาณค่าด้วย standard [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754)
 
-การประมาณค่านี้ทำให้เราไม่สามารถคำนวณค่าทศนิยมที่ถูกเป๊ะๆ ได้ดังตัวอย่างด้านล่าง
+การประมาณค่านี้ทำให้เราไม่สามารถคำนวณค่าทศนิยมที่ถูกเป๊ะๆ ได้ดัง[ตัวอย่างด้านล่าง](https://techtalkbook.com/why-0-1-0-2-does-not-equal-0-3/)
 
 **Java**
 ```
@@ -44,13 +44,13 @@ Type "help", "copyright", "credits" or "license" for more information.
 ## ประวัติศาสตร์ของ strictfp
 การมาของ keyword `strictfp` นั้นจริงๆ แล้วมีความเกี่ยวเนื่องกับ CPU architecture ในอดีต เพราะฉะนั้นต้องย้อนไปดูประวัติศาสตร์กันนิดนึง
 
-### ช่วงก่อน Java 1.2
+### ช่วงก่อน Java 1.2 - strictfp ยังไม่ถือกำเนิด
 Java ก่อน version 1.2 จะบังคับให้การคำนวณ floating point ทั้งหมดเป็นไปตาม standard IEEE 754
 วิธีนี้ทำให้การคำนวณ floating point ไม่ว่าจะอยู่บน CPU architecture ไหนก็จะได้ผลการคำนวณเท่ากันเสมอ
 อย่างไรก็ตาม ณ เวลานั้นการคำนวณ floating point ด้วย standard IEEE 754 บน CPU architecture x86
 ยุ่งยากและ performance ไม่ดีเท่าที่ควร
 
-### Java 1.2 ถึง Java 16
+### Java 1.2 ถึง Java 16 - การมาของ strictfp
 จากเหตุผลด้านบนที่ว่าการคำนวณ floating point ทำได้ช้า Java จึงออก keyword ใหม่มานั่นก็คือ `strictfp` นั่นเอง
 การคำนวณ floating point ที่ระบุว่าเป็น strictfp จะบังคับให้การคำนวณเป็นไปตาม standard IEEE 754 (strict)
 ในทางตรงกันข้าม ถ้าไม่ระบุว่าเป็น strictfp การคำนวณ floating point ก็จะแล้วแต่ CPU architecture ของเครื่องที่
@@ -67,7 +67,7 @@ public static strictfp double toRadians(double angdeg) {
 
 วิธีการใช้ strictfp สามารถดูได้จาก [ที่นี่](https://www.baeldung.com/java-strictfp)
 
-## Java 17: Always-Strict Floating-Point Semantics
+## Java 17 - ลาก่อน strictfp
 เมื่อเวลาผ่านไป CPU ตั้งแต่ Pentium 4 เป็นต้นมามี SSE2 extension ซึ่งช่วยให้การคำนวณ floating point แบบ strict เร็วขึ้นมาก ซึ่งทั้ง
 Intel และ AMD ก็ support SSE2 มาระยะเวลาหนึ่งแล้ว เป็นเหตุผลให้ Java กลับมาบังคับใช้ strict mode กับทุกๆ การคำนวณ floating point ไปเลยเหมือนสมัยก่อน Java 1.2
 และเราก็ไม่จำเป็นต้องใช้ keyword `strictfp` อีกต่อไป
@@ -80,6 +80,10 @@ public static double toRadians(double angdeg) {
 ```
 
 ## สรุป
-คิดว่าคนส่วนใหญ่คงไม่ได้ยุ่งกับ keyword strictfp นี้สักเท่าไหร่ แต่สำหรับคนที่เคยใช้ strictfp มาก่อนหน้านี้ ถ้า upgrade มาเป็น
-Java 17 เมื่อไหร่ก็ไม่ต้องใช้แล้วนะครับ :)
+ขอย้ำอีกครั้งนะครับว่า การมาของ strictfp ตั้งแต่ Java 1.2 จนกระทั่งจากไปใน Java 17 ไม่ได้เกี่ยวข้องกับเรื่องความไม่แม่นยำในการคำนวณทศนิยมเลย
+แต่เป็นเพราะต้องการให้ทุกๆ CPU Architecture คำนวณออกมาเหมือนกันต่างหาก
 
+อย่างไรก็แล้วแต่ คิดว่าคนส่วนใหญ่คงไม่ได้ยุ่งกับ keyword strictfp นี้สักเท่าไหร่ แต่สำหรับคนที่เคยใช้ strictfp มาก่อนหน้านี้ ถ้า upgrade มาเป็น Java 17 ก็ไม่ต้องใช้แล้วนะครับ :)
+
+## สรุป
+ใครที่อยากได้การคำนวณทศนิยมเลขฐานสิบได้เป๊ะๆ ให้ไปใช้ class [BigDecimal](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/math/BigDecimal.html) แทนครับ
