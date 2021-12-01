@@ -1,5 +1,7 @@
 # Feature ใหม่ใน Java 17: #4 Sealed Classes
+
 ![Duke, the Java mascot, looking at a top-secret rubber stamp](image/sealed-class.webp)
+
 Sealed Class หรือ Sealed Interface ช่วยให้เราระบุได้ว่า class ไหนที่จะมา extend/implement class 
 หรือ interface ของเราได้
 
