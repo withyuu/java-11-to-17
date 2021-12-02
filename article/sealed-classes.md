@@ -55,7 +55,7 @@ public sealed class Dog extends Pet {
 
 public non-sealed class Bird extends Pet { ... }
 ```
-- ประกาศให้เป็น Sealed Class / Sealed Interface ด้วย keyword `sealed`
+- ประกาศให้เป็น Sealed Class/Interface ด้วย keyword `sealed`
 - Sealed Class ต้องประกาศ class ที่อนุญาตให้ extend ได้หลัง keyword `permits`
   - ในกรณีที่ permitted subclass อยู่ใน source file เดียวกันทั้งหมด ไม่ต้องใช้ `permits` ก็ได้ เช่น class Dog ในตัวอย่างด้านบน
 - Sealed Class กับ permitted subclass ต้องอยู่ package เดียวกัน หรือ module เดียวกัน
@@ -68,7 +68,7 @@ public non-sealed class Bird extends Pet { ... }
 - ใช้ [Record](record.md) เป็น subclass ได้ (Record เป็น final class by default)
 
 ## สรุป
-Sealed Class/Interface เหมาะกับการนำไปใช้ทำ library มาก เพราะเข้ามาช่วยจำกัด subclass ให้อยู่ในขอบเขตที่เราต้องการ
+Sealed Class เหมาะกับการนำไปใช้ทำ library มาก เพราะเข้ามาช่วยจำกัด subclass ให้อยู่ในขอบเขตที่เราต้องการ
 โดยที่ library user ยังสามารถเรียกใช้ superclass ได้เหมือนเดิม
 
 สามารถดู source code ในบทความนี้ได้ [ที่นี่](https://github.com/withyuu/java-11-to-17)
