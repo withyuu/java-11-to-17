@@ -62,9 +62,9 @@ public non-sealed class Bird extends Pet { ... }
 - Subclass ของ Sealed Class จะต้องประกาศเป็น 1 ใน 3 แบบนี้
   - `final class`
   - `sealed class`
-  - `non-seal class`
-    - class ที่ประกาศเป็น `non-seal` จะสามารถ extend โดย class อื่นได้ 
-    - `non-seal` เป็น keyword แรกใน Java ที่มี dash !!
+  - `non-sealed class`
+    - class ที่ประกาศเป็น `non-sealed` จะสามารถ extend โดย class อื่นได้
+    - `non-sealed` เป็น keyword แรกใน Java ที่มี dash !!
 - ใช้ [Record](record.md) เป็น subclass ได้ (Record เป็น final class by default)
 
 ## สรุป
