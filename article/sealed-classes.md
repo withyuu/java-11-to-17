@@ -2,8 +2,7 @@
 
 ![Duke, the Java mascot, looking at a top-secret rubber stamp](image/sealed-class.webp)
 
-Sealed Class หรือ Sealed Interface ช่วยให้เราระบุได้ว่า class ไหนที่จะมา extend/implement class 
-หรือ interface ของเราได้
+Sealed Class หรือ Sealed Interface ช่วยให้เราระบุได้ว่า class ไหนที่จะมา extend class หรือ implement interface ของเราได้
 
 ```java
 public sealed abstract class Pet permits Cat, Dog, Bird { ... }
