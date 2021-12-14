@@ -1,5 +1,7 @@
 # Feature ใหม่ใน Java 17: #5 Switch Expressions
 
+![Switch](image/switch-expressions.jpg)
+
 เชื่อว่าทุกคนคงเคยเขียน switch statement กันมาอยู่แล้ว เพราะฉะนั้นก็คงคุ้นเคยกับเหตุการณ์นี้กันดี
 ```java
 Color color = Color.ULTRAMARINE;
