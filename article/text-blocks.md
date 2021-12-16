@@ -1,8 +1,10 @@
 # Feature ใหม่ใน Java 17: #6 Text Blocks
 
+![Text Blocks](image/text-blocks.jpg)
+
 Text Block เป็น literal แบบใหม่ที่ช่วยให้การเขียนข้อความที่มีหลายบรรทัดและต้องมีการจัด format ง่ายขึ้น
 
-บางครั้งเราก็จำเป็นต้องเขียน code snippet เช่น XML, JSON, HTML เป็น String literal ใน Java
+หลายๆ ครั้งเราจำเป็นต้องเขียน code snippet เช่น XML, JSON, HTML เป็น String literal ใน Java
 ซึ่งเวลาเขียนทีก็ค่อนข้างลำบาก เช่น
 ```java
 String html = "<html>\n" +
@@ -87,7 +89,7 @@ String textBlock = """
 
 ## Trailing Whitespace
 
-whitespace ด้านหลังจะโดนเอาออกทั้งหมดทุกบรรทัดเลย เพราะโดยทั่วไปแล้ว whitespace ด้านหลังมักจะมาโดยไม่ตั้งใจอยู่แล้ว
+whitespace ด้านหลังจะโดนเอาออกทั้งหมดทุกบรรทัดเลย เพราะโดยทั่วไป whitespace ด้านหลังมักจะมาโดยไม่ตั้งใจอยู่แล้ว
 อย่างไรก็ตาม ถ้าอยากให้มี trailing whitespace ก็สามารถทำได้ด้วยการใช้ escape sequence `\s`
 (จะพูดถึงอีกทีในหัวข้อ escape sequences)
 
