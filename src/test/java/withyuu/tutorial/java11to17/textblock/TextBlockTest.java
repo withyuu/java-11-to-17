@@ -113,20 +113,20 @@ class TextBlockTest {
   void escapeSequencesAreInterpreted() {
     String textBlock = """
             We can still use \t as tab.
+            And we can still use \n for a new line
             And we can escape \' and \" thought it is unnecessary.
             Because we can use ' and " directly.
-            And we can still use \n for a new line
-            But if we want to use triple quotes we must escape one out of three.
+            But if we want to use three double quotes we must escape one out of three.
             Like this \"""
             this "\""
             or this ""\"
             """;
     String expected = "We can still use \t as tab.\n" +
-                      "And we can escape \' and \" thought it is unnecessary.\n" +
-                      "Because we can use ' and \" directly.\n" +
                       "And we can still use \n" +
                       " for a new line\n" +
-                      "But if we want to use triple quotes we must escape one out of three.\n" +
+                      "And we can escape \' and \" thought it is unnecessary.\n" +
+                      "Because we can use ' and \" directly.\n" +
+                      "But if we want to use three double quotes we must escape one out of three.\n" +
                       "Like this \"\"\"\n" +
                       "this \"\"\"\n" +
                       "or this \"\"\"\n";
@@ -164,14 +164,45 @@ class TextBlockTest {
   }
 
   @Test
-  void formatTextBlock(){
+  void concatTextBlock() {
+    String thingToSay = "Abracadabra";
+    String textBlock = """
+        A: Do you have anything to say?
+        B: \
+        """ + thingToSay + """
+        .\
+        """;
+    String expected = "A: Do you have anything to say?\n" +
+        "B: Abracadabra.";
+    assertThat(textBlock).isEqualTo(expected);
+  }
+
+  @Test
+  void formatTextBlock() {
+    String thingToSay = "Abracadabra";
     String textBlock = """
         A: Do you have anything to say?
         B: %s.\
-        """.formatted("Abracadabra");
+        """.formatted(thingToSay);
     String expected = "A: Do you have anything to say?\n" +
                       "B: Abracadabra.";
     assertThat(textBlock).isEqualTo(expected);
   }
+
+  @Test
+  void bewareOfEscapeSequencesInTextYouHaveCopiedPasted() {
+    String textBlock = """
+        {
+          "someKey": "some value that contains \n inside the text"
+        }
+        """;
+    String expected = "{\n" +
+                      "  \"someKey\": \"some value that contains \n" +
+                      " inside the text\"\n" +
+                      "}\n";
+    assertThat(textBlock).isEqualTo(expected);
+  }
+
+
 
 }
