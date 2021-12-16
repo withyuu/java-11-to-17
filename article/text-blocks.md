@@ -3,13 +3,13 @@
 Text Block เป็น literal แบบใหม่ที่ช่วยให้การเขียนข้อความที่มีหลายบรรทัดและต้องมีการจัด format ง่ายขึ้น
 
 บางครั้งเราก็จำเป็นต้องเขียน code snippet เช่น XML, JSON, HTML เป็น String literal ใน Java
-ซึ่งเวลาเขีนยทีก็ค่อนข้างลำบาก เช่น
+ซึ่งเวลาเขียนทีก็ค่อนข้างลำบาก เช่น
 ```java
 String html = "<html>\n" +
-                  "    <body>\n" +
-                  "        <p>Don't think about elephants</p>\n" +
-                  "    </body>\n" +
-                  "</html>\n";
+              "    <body>\n" +
+              "        <p>Don't think about elephants</p>\n" +
+              "    </body>\n" +
+              "</html>\n";
 ```
 เราต้องมาคอยใส่ `\n` และ `+` ทุกบรรทัด แต่ใน Java 17[^1] เราสามารถเขียนโค้ดด้านบนด้วย Text Block
 ได้ดังนี้
@@ -27,15 +27,16 @@ String html = """
 การใช้งานทั่วไปของ Text Block อันที่จริงก็มีเท่านี้แหละ แต่ถ้าใครต้องการความเป๊ะและรายละเอียดยิบย่อยของ Text Block
 เราไปดูกันต่อเลย
 
-*Note: สำหรับคนที่เขียน Kotlin มา Text Block ของ Java ทำงานต่างกับ Raw String ของ Kotlin เวลาสลับไปมา
-ระหว่าง 2 ภาษานี้อาจต้องระวังนิดนึง*
+*Note: Text Block ของ Java ทำงานต่างกับ Raw String ของ Kotlin นะครับ เวลาสลับไปมา
+ระหว่าง 2 ภาษานี้ต้องระวังนิดนึง*
 
 ## New Line ในบรรทัดสุดท้าย
-ถ้าสังเกตตัวอย่างด้านบนดีๆ จะเห็นว่า Text Block ด้านบนเมื่อแปลงเป็น String literal แล้ว ที่บรรสุดท้ายจะมี `\n` ติดมาตรง
+
+ถ้าสังเกตตัวอย่างด้านบนดีๆ จะเห็นว่า Text Block ด้านบนเมื่อแปลงเป็น String literal แล้ว ที่บรรทัดสุดท้ายจะมี `\n` ติดมาตรง
 `</html>\n`
 
 นั่นเป็นเพราะ closing delimiter `"""` ของเราอยู่คนละบรรทัดกับ `</html>` ทำให้มี new line character ติดมานั่นเอง
-ถ้าอยากให้ไม่มีติดมาเราก็แค่ขยับ `"""` ไปอยู่ท้ายบรรทัดสุดท้าย หรืออีกวิธีคือใช้ \<line terminator> (จะพูดถึงอีกทีในหัวข้อ escape sequences)
+ถ้าไม่อยากให้มีติดมาเราก็แค่ขยับ `"""` ไปอยู่ท้ายบรรทัดสุดท้าย หรืออีกวิธีคือใช้ \<line terminator> (จะพูดถึงอีกทีในหัวข้อ escape sequences)
 ```java
 @Test
 void noTrailingNewline() {
@@ -55,9 +56,12 @@ void noTrailingNewline() {
 ```
 
 ## Leading Whitespace
+
 whitespace ด้านหน้าจะโดนเอาออกเท่ากันทุกบรรทัด โดยจะเอาออกจนเท่ากับตำแหน่งของตัวอักษรตัวแรกของบรรทัดใดบรรทัดหนึ่ง
 
-งงมั้ยครับ? งงเนอะ ดูตัวอย่างดีกว่า ตัวอย่างด้านล่างใช้ `.` แทน whitespace ที่ถูกเอาออกไป
+งงมั้ยครับ?
+
+งงเนอะ ดูตัวอย่างดีกว่า ตัวอย่างด้านล่างใช้ `.` แทน whitespace ที่ถูกเอาออกไป
 ```java
 String textBlock = """
 ....<html>   
@@ -82,11 +86,13 @@ String textBlock = """
 ```
 
 ## Trailing Whitespace
+
 whitespace ด้านหลังจะโดนเอาออกทั้งหมดทุกบรรทัดเลย เพราะโดยทั่วไปแล้ว whitespace ด้านหลังมักจะมาโดยไม่ตั้งใจอยู่แล้ว
 อย่างไรก็ตาม ถ้าอยากให้มี trailing whitespace ก็สามารถทำได้ด้วยการใช้ escape sequence `\s`
 (จะพูดถึงอีกทีในหัวข้อ escape sequences)
 
 ## Escape Sequence
+
 ใน Java **Text Block ไม่ใช่ Raw String ฉะนั้น escape sequence ต่างๆ ยังทำงานเหมือนเดิม**
 ```java
   @Test
@@ -128,9 +134,11 @@ String json = """
 ```
 
 ## Escape Sequence ใหม่
+
 Java ออก escape sequence ใหม่มาใช้คู่กับ Text Block
 
-### \\<line-terminator>
+### \\\<line-terminator>
+
 บางครั้งเราต้องการพิมพ์ข้อความบรรทัดเดียวยาวๆ จะทำเป็น String literal ก็ไม่สะดวก จะทำเป็น Text Block
 ก็จะโดนบังคับขึ้นบรรทัดใหม่ ในกรณี้นี้เราสามารถใช้ `\` ใช้เป็นตัวอักษรสุดท้ายในบรรทัดของ Text Block
 เพื่อไม่ให้มีการขึ้นบรรทัดใหม่ได้ ตามตัวอย่างด้านล่าง
@@ -148,12 +156,12 @@ void useBackslashToContinueInTheSameLine() {
   assertThat(textBlock).isEqualTo(expected);
 }
 ```
-*Note: \<line-terminator> ใช้ได้กับเฉพาะ Text Block เท่านั้น ใช้กับ String literal ไม่ได้*
+*Note: \\\<line-terminator> ใช้ได้กับเฉพาะ Text Block เท่านั้น ใช้กับ String literal ไม่ได้*
 
 ### \s Single Space
 
 เนื่องจาก Text Block จะ trim trailing whitespace ออกเสมอ ถ้าเราอยากให้ text ของเรามี trailing whitespace
-จะสามารถทำได้โดยการใช้ `\s` เป็นรั้วกั้น
+สามารถทำได้โดยการใช้ `\s` เป็นรั้วกั้น
 ```java
 @Test
 void useBackslashSAsASingleSpaceToAvoidTrimming() {
@@ -170,6 +178,7 @@ void useBackslashSAsASingleSpaceToAvoidTrimming() {
 *Note: \s ใช้ได้กับทั้ง Text Block และ String literal*
 
 ## การ Concat Text Block
+
 Text Block เป็น String ธรรมดา สามารถ concat กับ String อื่นๆ ด้วยเครื่องหมาย `+` ได้ตามปกติ แต่เนื่องจากการเขียน
 Text Block ต้องเขียนหลายบรรทัด เวลาเขียนจะดูไม่ค่อยสวยงามเท่าไหร่
 ```java
@@ -194,6 +203,7 @@ String textBlock = """
 ```
 
 ## สรุป
+
 - Text Block ช่วยในการเขียน multiline string เช่นพวก code snippet ต่างๆ
 - Text Block ไม่ใช่ raw string! ยังมีการใช้ escape sequence เหมือนเดิม
 - การจัด format ของ Text Block มีเรื่องยิบย่อยที่ต้องรู้เยอะ แนะนำให้ลองเล่นเองหรือตามไปดู
