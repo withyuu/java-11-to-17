@@ -84,6 +84,12 @@ class RecordTest {
   }
 
   @Test
+  void customToString() {
+    StudentScore sirius = new StudentScore("Sirius", 72.5);
+    assertThat(sirius).asString().isEqualTo("Sirius gets 72.50 score!");
+  }
+
+  @Test
   void annotationOnType() {
     TestSubject t = new TestSubject(1, 2, 3, 4, 5);
     assertThat(t.getClass()).hasAnnotation(OnType.class);
