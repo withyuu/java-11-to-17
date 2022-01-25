@@ -57,13 +57,13 @@ void noTrailingNewline() {
 }
 ```
 
-## Leading Whitespace
+## Leading White Space
 
-whitespace ด้านหน้าจะโดนเอาออกเท่ากันทุกบรรทัด โดยจะเอาออกจนเท่ากับตำแหน่งของตัวอักษรตัวแรกของบรรทัดใดบรรทัดหนึ่ง
+white space ด้านหน้าจะโดนเอาออกเท่ากันทุกบรรทัด โดยจะเอาออกจนเท่ากับตำแหน่งของตัวอักษรตัวแรกของบรรทัดใดบรรทัดหนึ่ง
 
 งงมั้ยครับ?
 
-งงเนอะ ดูตัวอย่างดีกว่า ตัวอย่างด้านล่างใช้ `.` แทน whitespace ที่ถูกเอาออกไป
+งงเนอะ ดูตัวอย่างดีกว่า ตัวอย่างด้านล่างใช้ `.` แทน white space ที่ถูกเอาออกไป
 ```java
 String textBlock = """
 ....<html>   
@@ -73,7 +73,7 @@ String textBlock = """
 ....</html>   
 ....""";
 ```
-ถ้าเราเลื่อน closing delimiter มาทางซ้ายก็จะได้ leading whitespace นำหน้าแต่ละบรรทัด
+ถ้าเราเลื่อน closing delimiter มาทางซ้ายก็จะได้ leading white space นำหน้าแต่ละบรรทัด
 ```java
 String textBlock = """
 ....    <html>
@@ -87,39 +87,39 @@ String textBlock = """
 ....""";
 ```
 
-## Trailing Whitespace
+## Trailing White Space
 
-whitespace ด้านหลังจะโดนเอาออกทั้งหมดทุกบรรทัดเลย เพราะโดยทั่วไป whitespace ด้านหลังมักจะมาโดยไม่ตั้งใจอยู่แล้ว
-อย่างไรก็ตาม ถ้าอยากให้มี trailing whitespace ก็สามารถทำได้ด้วยการใช้ escape sequence `\s`
+white space ด้านหลังจะโดนเอาออกทั้งหมดทุกบรรทัดเลย เพราะโดยทั่วไป white space ด้านหลังมักจะมาโดยไม่ตั้งใจอยู่แล้ว
+อย่างไรก็ตาม ถ้าอยากให้มี trailing white space ก็สามารถทำได้ด้วยการใช้ escape sequence `\s`
 (จะพูดถึงอีกทีในหัวข้อ escape sequences)
 
 ## Escape Sequence
 
 ใน Java **Text Block ไม่ใช่ Raw String ฉะนั้น escape sequence ต่างๆ ยังทำงานเหมือนเดิม**
 ```java
-  @Test
-  void escapeSequencesAreInterpreted() {
-    String textBlock = """
-            We can still use \t as tab.
-            And we can still use \n for a new line
-            And we can escape \' and \" though it is unnecessary.
-            Because we can use ' and " directly.
-            But if we want to use three double quotes we must escape one of them.
-            Like this \"""
-            this "\""
-            or this ""\"
-            """;
-    String expected = "We can still use \t as tab.\n" +
-                      "And we can still use \n" +
-                      " for a new line\n" +
-                      "And we can escape \' and \" though it is unnecessary.\n" +
-                      "Because we can use ' and \" directly.\n" +
-                      "But if we want to use three double quotes we must escape one of them.\n" +
-                      "Like this \"\"\"\n" +
-                      "this \"\"\"\n" +
-                      "or this \"\"\"\n";
-    assertThat(textBlock).isEqualTo(expected);
-  }
+@Test
+void escapeSequencesAreInterpreted() {
+  String textBlock = """
+          We can still use \t as tab.
+          And we can still use \n for a new line
+          And we can escape \' and \" though it is unnecessary.
+          Because we can use ' and " directly.
+          But if we want to use three double quotes we must escape one of them.
+          Like this \"""
+          this "\""
+          or this ""\"
+          """;
+  String expected = "We can still use \t as tab.\n" +
+                    "And we can still use \n" +
+                    " for a new line\n" +
+                    "And we can escape \' and \" though it is unnecessary.\n" +
+                    "Because we can use ' and \" directly.\n" +
+                    "But if we want to use three double quotes we must escape one of them.\n" +
+                    "Like this \"\"\"\n" +
+                    "this \"\"\"\n" +
+                    "or this \"\"\"\n";
+  assertThat(textBlock).isEqualTo(expected);
+}
 ```
 ตามตัวอย่างด้านบนเรายังใช้ `\t` `\n` และ escape sequence ทุกตัวได้เหมือนเดิม สำหรับ double quote เราไม่จำเป็นต้อง
 escape ก็ได้ ยกเว้นถ้าเราอยากพิมพ์ double quote ติดกัน 3 ตัว เราต้อง escape เป็น `\"` ตัวนึงเพื่อไม่ให้กลายเป็น `"""` delimiter
@@ -142,8 +142,8 @@ Java ออก escape sequence ใหม่มาใช้คู่กับ Tex
 ### \\\<line-terminator>
 
 บางครั้งเราต้องการพิมพ์ข้อความบรรทัดเดียวยาวๆ จะทำเป็น String literal ก็ไม่สะดวก จะทำเป็น Text Block
-ก็จะโดนบังคับขึ้นบรรทัดใหม่ ในกรณี้นี้เราสามารถใช้ `\` ใช้เป็นตัวอักษรสุดท้ายในบรรทัดของ Text Block
-เพื่อไม่ให้มีการขึ้นบรรทัดใหม่ได้ ตามตัวอย่างด้านล่าง
+ก็จะโดนบังคับขึ้นบรรทัดใหม่ ในกรณีนี้เราสามารถใช้ `\` เป็นตัวอักษรสุดท้ายในบรรทัดเพื่อไม่ให้มีการขึ้นบรรทัดใหม่ได้
+ตามตัวอย่างด้านล่าง
 ```java
 @Test
 void useBackslashToContinueInTheSameLine() {
@@ -162,7 +162,7 @@ void useBackslashToContinueInTheSameLine() {
 
 ### \s Single Space
 
-เนื่องจาก Text Block จะ trim trailing whitespace ออกเสมอ ถ้าเราอยากให้ text ของเรามี trailing whitespace
+เนื่องจาก Text Block จะ trim trailing white space ออกเสมอ ถ้าเราอยากให้ text ของเรามี trailing white space
 สามารถทำได้โดยการใช้ `\s` เป็นรั้วกั้น
 ```java
 @Test
